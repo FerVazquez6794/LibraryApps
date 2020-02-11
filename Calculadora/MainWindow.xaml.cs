@@ -25,14 +25,22 @@ namespace Calculadora
             InitializeComponent();
         }
 
-        private void button_Copy12_Click(object sender, RoutedEventArgs e)
+
+        private void btnTouchPad_Click_1(object sender, RoutedEventArgs e)
+        {
+            string s = Content.ToString();
+            string r = System.Windows.Controls.ContentControl.ContentProperty.Name.v); 
+            txtResult.Text = s + r; 
+        }
+
+        private void FormMain_TextInput(object sender, TextCompositionEventArgs e)
         {
 
         }
 
-        private void button_Copy1_Click(object sender, RoutedEventArgs e)
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
         {
-
+            txtResult.Text = e.Key.ToString(); 
         }
     }
 }
