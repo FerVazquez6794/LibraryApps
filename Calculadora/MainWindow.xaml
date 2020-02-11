@@ -6,184 +6,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Calculadora v1" WindowStartupLocation="CenterScreen"   WindowStyle="ToolWindow" Width="411.333">
-    <Window.Resources>
-        <Style x:Key="FocusVisual">
-            <Setter Property="Control.Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
-        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
-        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
-        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
-        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
-        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
-        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-            <Setter Property="Background" Value="Black"></Setter>
-            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-            <Setter Property="Foreground" Value="White"/>
-
-            <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsDefaulted" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-    <Window.Background>
-        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
-    </Window.Background>
-
-    <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Button x:Name="btnAC" Grid.Row="1" Grid.Column="0" Content="AC" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" Padding="1" VerticalAlignment="Center" Click="btnAC_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnSign" Grid.Row="1" Grid.Column="1" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="+/-" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnPorcent" Grid.Row="1" Grid.Column="2" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnPorcent_Click" AutomationProperties.IsOffscreenBehavior="FromClip" KeyDown="btnPorcent_KeyDown">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnDividir" Grid.Row="1" Grid.Column="3" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="/" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnDividir_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-
-        <Button x:Name="btnNumSiete" Grid.Row="2" Grid.Column="0" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="7 " Grid.RowSpan="2" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumSiete_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumOcho" Grid.Row="2" Grid.Column="1" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="8" Grid.RowSpan="2" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumOcho_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumNueve" Grid.Row="2" Grid.Column="2" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="9" Grid.RowSpan="2" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumNueve_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnMultiplicar" Grid.Row="2" Grid.Column="3" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="*" Grid.RowSpan="2" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnMultiplicar_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-
-        <Button x:Name="btnNumCuatro" Grid.Row="4" Grid.Column="0" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="4" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumCuatro_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumCinco" Grid.Row="4" Grid.Column="1" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="5" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumCinco_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumSeis" Grid.Row="4" Grid.Column="2" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="6" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumSeis_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnResta" Grid.Row="4" Grid.Column="3" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="-" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnResta_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-
-        <Button x:Name="btnNumUno" Grid.Row="5" Grid.Column="0" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="1" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumUno_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumDos" Grid.Row="5" Grid.Column="1" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="2" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumDos_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumTres" Grid.Row="5" Grid.Column="2" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="3" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnNumTres_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnResult" Grid.Row="6" Grid.Column="3" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="=" RenderTransformOrigin="-3.212,1.989" BorderBrush="#FFD4C1C1" Foreground="White" Margin="10" VerticalAlignment="Center" Click="btnResult_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnSumar" Grid.Row="5" Grid.Column="3" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="+" Foreground="White" BorderBrush="#FFD4C1C1" Margin="10" VerticalAlignment="Center" Click="btnSumar_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnNumCero" Grid.Row="6" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="0" Grid.ColumnSpan="2" BorderBrush="#FFD4C1C1" Foreground="White" Margin="10" VerticalAlignment="Center" Click="btnNumCero_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="btnPunto" Grid.Row="6" FontFamily="Microsoft YaHei UI" FontSize="40" Opacity="0.8" AutomationProperties.AccessKey="ButtonCalculator" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="1" Content="." Grid.Column="2" BorderBrush="#FFD4C1C1" Foreground="White" Margin="10" VerticalAlignment="Center" Click="btnPunto_Click" AutomationProperties.IsOffscreenBehavior="FromClip">
-            <Button.Background>
-                <SolidColorBrush Color="#FF040404"/>
-            </Button.Background>
-        </Button>
-        <TextBox x:Name="txtResult" Grid.ColumnSpan="4" Margin="10" Text="0" FlowDirection="RightToLeft" HorizontalContentAlignment="Stretch" FontSize="40" FontStretch="ExtraExpanded" FontWeight="Bold" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" TextWrapping="Wrap" Padding="10,0,0,0" VerticalContentAlignment="Center" KeyUp="txtResult_KeyUp"/>
-
-    </Grid>
+        Title="Calculadora v1" 
+    WindowStartupLocation="CenterScreen" 
+    
+    WindowStyle="ToolWindow" UseLayoutRounding="False" HorizontalContentAlignment="Stretch" Padding="0" Width="239" Height="386" TextInput="FormMain_TextInput" KeyDown="FormMain_KeyDown">
+    <DockPanel LastChildFill="False" Margin="0" Grid.IsSharedSizeScope="True" UseLayoutRounding="False" HorizontalAlignment="Left">
+        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="0" DockPanel.Dock="Top" Height="25" Margin="5" FontSize="18" TextAlignment="Right" HorizontalContentAlignment="Center" FontWeight="Bold" Padding="0,0,10,0" TextOptions.TextHintingMode="Fixed" VerticalContentAlignment="Stretch">
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </TextBox.Background>
+        </TextBox>
+        <TextBox x:Name="txtResult" TextWrapping="Wrap" Text="0" DockPanel.Dock="Top" Height="50" FontSize="40" TextAlignment="Right" HorizontalContentAlignment="Center" Padding="0,0,10,0" TextOptions.TextHintingMode="Fixed" VerticalContentAlignment="Stretch" Margin="5,5,5,0">
+            <TextBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+            </TextBox.Background>
+        </TextBox>
+        <Grid Margin="5,5,5,0" HorizontalAlignment="Center" Height="257" VerticalAlignment="Top" Width="220">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="button" Content="4" Margin="5" HorizontalContentAlignment="Center" Grid.Row="1" Click="btnTouchPad_Click_1" />
+            <Button Click="btnTouchPad_Click_1" x:Name="button1" Content="6" Grid.Row="1" Margin="5" HorizontalContentAlignment="Center" Grid.Column="2"/>
+            <Button Click="btnTouchPad_Click_1" x:Name="button1_Copy" Content="&lt;--" Grid.Column="1" Grid.Row="3" Margin="5" HorizontalContentAlignment="Center"/>
+            <Button Click="btnTouchPad_Click_1" x:Name="button1_Copy1" Content="OK" Grid.Column="2" Margin="5" HorizontalContentAlignment="Center" Grid.Row="3"/>
+            <Button x:Name="button1_Copy2" Content="3" Grid.Row="2" Grid.Column="2" Margin="5" HorizontalContentAlignment="Center" Click="btnTouchPad_Click_1"/>
+            <Button x:Name="button1_Copy3" Content="2" Grid.Column="1" Margin="5" HorizontalContentAlignment="Center" Grid.Row="2" Click="btnTouchPad_Click_1"/>
+            <Button x:Name="button_Copy" Content="8" Margin="5" HorizontalContentAlignment="Center" Grid.Column="1" Click="btnTouchPad_Click_1"/>
+            <Button x:Name="button1_Copy4" Content="1" Margin="5" HorizontalContentAlignment="Center" Grid.Row="2" Click="btnTouchPad_Click_1"/>
+            <Button x:Name="button1_Copy6" Content="9" Margin="5" HorizontalContentAlignment="Center" Grid.Column="2" />
+            <Button x:Name="button1_Copy7" Content="5" Grid.Row="1" Margin="5" HorizontalContentAlignment="Center" Grid.Column="1" Click="btnTouchPad_Click_1"/>
+            <Button x:Name="btnTouchPad" Content="7" Margin="5" HorizontalContentAlignment="Center" Click="btnTouchPad_Click_1" />
+            <Button x:Name="button1_Copy5" Content="0" Margin="5" HorizontalContentAlignment="Center" Grid.Row="3" Click="btnTouchPad_Click_1"/>
+            
+        </Grid>
+    </DockPanel>
 </Window>
+   
+   
